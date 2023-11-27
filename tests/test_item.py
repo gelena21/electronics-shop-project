@@ -25,6 +25,19 @@ def test_name_setter_length_limit():
         item.name = "TooLongNameToExceedTheLimit"
 
 
+@pytest.fixture
+def sample_item():
+    return Item("SampleItem", 49.99, 5)
+
+
+def test_str_method(sample_item):
+    assert str(sample_item) == "SampleItem"
+
+
+def test_repr_method(sample_item):
+    assert repr(sample_item) == "Item('SampleItem', 49.99, 5)"
+
+
 def test_instantiate_from_csv():
     csv_data = "Phone,199.99,3\nLaptop,899.99,1\n"
     with open("test_items.csv", "w", encoding="utf-8") as csv_file:
@@ -32,3 +45,4 @@ def test_instantiate_from_csv():
 
     Item.instantiate_from_csv("test_items.csv")
     os.remove(csv_file.name)
+
