@@ -82,5 +82,12 @@ class Item:
             return float(value)
         except ValueError:
             if raise_error:
-                raise  # выбросить исключение при неудачном преобразовании
+                raise
             return default
+
+    def __repr__(self) -> str:
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self) -> str:
+        return f"{self.name}"
+

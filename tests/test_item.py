@@ -1,7 +1,7 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
-
+import os
 
 @pytest.fixture
 def first_item():
@@ -29,3 +29,6 @@ def test_instantiate_from_csv():
     csv_data = "Phone,199.99,3\nLaptop,899.99,1\n"
     with open("test_items.csv", "w", encoding="utf-8") as csv_file:
         csv_file.write(csv_data)
+
+    Item.instantiate_from_csv("test_items.csv")
+    os.remove(csv_file.name)
