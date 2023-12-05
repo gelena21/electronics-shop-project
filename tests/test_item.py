@@ -70,4 +70,4 @@ def test_add_invalid_type_raises_error():
     try:
         result = item1 + invalid_type
     except TypeError as e:
-        assert str(e) == "Unsupported operation: can only add Item instances"
+        assert str(e) == "Unsupported operation"
