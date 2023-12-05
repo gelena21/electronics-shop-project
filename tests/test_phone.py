@@ -21,7 +21,7 @@ def test_phone_repr_representation(phone):
 
 
 def test_phone_addition(phone):
-    other_phone = Phone("Samsung Galaxy", 100_000, 3, 1)
+    other_phone = Phone("Samsung Note", 100_000, 3, 1)
     result = phone + other_phone
     assert result == 8
 

@@ -25,6 +25,6 @@ class Phone(Item):
 
     @number_of_sim.setter
     def number_of_sim(self, value):
-        if not isinstance(value, int) or value < 0:
+        if not isinstance(value, int) or value <= 0:
             raise ValueError("Количество  SIM-карт должно быть целым числом")
         self._number_of_sim = value
