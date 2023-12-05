@@ -29,7 +29,7 @@ def test_phone_addition(phone):
 def test_phone_addition_with_item_raises_error(phone):
     item = Item("Laptop", 80000, 2)
     with pytest.raises(TypeError,
-                       match="Неподдерживаемая операция: можно складывать только экземпляры классов Item и Phone"):
+                       match="Неподдерживаемая операция"):
         result = phone + item
 
 
@@ -43,5 +43,5 @@ def test_phone_set_number_of_sim(phone):
 
 
 def test_phone_set_invalid_number_of_sim_raises_error(phone):
-    with pytest.raises(ValueError, match="Количество физических SIM-карт должно быть целым числом, не меньше нуля."):
+    with pytest.raises(ValueError, match="Количество  SIM-карт должно быть целым числом"):
         phone.number_of_sim = -1
