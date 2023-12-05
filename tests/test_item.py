@@ -3,6 +3,7 @@ import pytest
 from src.item import Item
 import os
 
+
 @pytest.fixture
 def first_item():
     return Item("Изделие", 149.99, 2)
@@ -46,3 +47,27 @@ def test_instantiate_from_csv():
     Item.instantiate_from_csv("test_items.csv")
     os.remove(csv_file.name)
 
+
+def test_add_items():
+    item1 = Item("Laptop", 1000, 2)
+    item2 = Item("Tablet", 500, 3)
+    result = item1 + item2
+    assert result == 5
+
+
+def test_add_item_and_phone_raises_error():
+    item = Item("Laptop", 1000, 2)
+    phone = Item("Smartphone", 700, 5, 2)
+    try:
+        result = item + phone
+    except TypeError as e:
+        assert str(e) == "Unsupported operation: can only add Item instances"
+
+
+def test_add_invalid_type_raises_error():
+    item1 = Item("Laptop", 1000, 2)
+    invalid_type = "NotAnItemInstance"
+    try:
+        result = item1 + invalid_type
+    except TypeError as e:
+        assert str(e) == "Unsupported operation: can only add Item instances"

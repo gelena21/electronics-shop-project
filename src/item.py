@@ -29,14 +29,14 @@ class Item:
     @name.setter
     def name(self, value: str) -> None:
         """
-               Сеттер для установки значения атрибута name.
+        Сеттер для установки значения атрибута name.
 
-               :param value: Новое значение для name.
-               """
+        :param value: Новое значение для name.
+        """
         if len(value) <= 10:
             self._name = value[:10]
         else:
-            raise ValueError("Длина наименования товара превышает 10 символов.")
+            raise ValueError("Длина имени товара больше 10 символов.")
 
     def calculate_total_price(self) -> float:
         """
@@ -69,13 +69,14 @@ class Item:
                 cls.all.append(item)
 
     @staticmethod
-    def string_to_number(value: str, default: float = 0.0, raise_error: bool = False) -> float:
+    def string_to_number(value: str, default: float = 0.0,
+                         raise_error: bool = False) -> float:
         """
         Преобразует строку в число.
 
         :param value: Строковое представление числа.
-        :param default: Значение по умолчанию, возвращаемое при ошибке преобразования.
-        :param raise_error: Флаг, указывающий, следует ли выбрасывать исключение при ошибке.
+        :param default: Значение по умолчанию при ошибке преобразования.
+        :param raise_error: Флаг, указывающий исключение при ошибке.
         :return: Преобразованное число.
         """
         try:
@@ -91,3 +92,8 @@ class Item:
     def __str__(self) -> str:
         return f"{self.name}"
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise TypeError("Unsupported operation")
