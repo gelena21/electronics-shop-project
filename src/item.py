@@ -33,10 +33,10 @@ class Item:
 
         :param value: Новое значение для name.
         """
-        if len(value) <= 10:
-            self._name = value[:10]
+        if len(value) <= 20:
+            self._name = value[:20]
         else:
-            raise ValueError("Длина имени товара больше 10 символов.")
+            raise ValueError("Длина имени товара больше 20 символов.")
 
     def calculate_total_price(self) -> float:
         """
