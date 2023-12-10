@@ -12,15 +12,11 @@ class LanguageMixin:
     def language(self):
         return self._language
 
-    @language.setter
-    def language(self, new_lang):
-        self.change_lang(new_lang)
-
-    def change_lang(self, new_lang=None):
-        if new_lang is not None and new_lang in [self.EN, self.RU]:
-            self._language = new_lang
+    def change_lang(self):
+        if self._language == self.EN:
+            self._language = self.RU
         else:
-            raise ValueError("Unsupported language")
+            self._language = self.EN
 
 
 class Keyboard(Item, LanguageMixin):

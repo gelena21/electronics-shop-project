@@ -1,4 +1,4 @@
-from src.keyboard import Keyboard, LanguageMixin
+from src.keyboard import Keyboard
 
 if __name__ == '__main__':
     kb = Keyboard('Dark Project KD87A', 9600, 5)
@@ -6,17 +6,12 @@ if __name__ == '__main__':
 
     assert str(kb.language) == "EN"
 
-    kb.change_lang(LanguageMixin.RU)
+    kb.change_lang()
     assert str(kb.language) == "RU"
 
     # Сделали EN -> RU -> EN
-    kb.change_lang(LanguageMixin.EN)
+    kb.change_lang()
     assert str(kb.language) == "EN"
 
-    try:
-        kb.language = 'CH'
-    except ValueError as e:
-        assert str(e) == "Unsupported language"
-    else:
-        raise AssertionError("Expected ValueError but got no exception")
+    kb.language = 'CH'
     # AttributeError: property 'language' of 'Keyboard' object has no setter
