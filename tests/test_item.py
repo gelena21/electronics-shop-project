@@ -58,16 +58,12 @@ def test_add_items():
 def test_add_item_and_phone_raises_error():
     item = Item("Laptop", 1000, 2)
     phone = Item("Smartphone", 700, 5, 2)
-    try:
+    with pytest.raises(TypeError, match="Unsupported operation: can only add Item instances"):
         result = item + phone
-    except TypeError as e:
-        assert str(e) == "Unsupported operation: can only add Item instances"
 
 
 def test_add_invalid_type_raises_error():
     item1 = Item("Laptop", 1000, 2)
     invalid_type = "NotAnItemInstance"
-    try:
+    with pytest.raises(TypeError, match="Unsupported operation"):
         result = item1 + invalid_type
-    except TypeError as e:
-        assert str(e) == "Unsupported operation"
